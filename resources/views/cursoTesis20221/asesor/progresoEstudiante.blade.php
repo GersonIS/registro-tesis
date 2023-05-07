@@ -187,13 +187,13 @@
                         <div class="item-card col-4">
                             <label for="cboFinInvestigacion" class="form-label">De acuerdo al fin que se persigue</label>
                             <input class="form-control" type="text" name="txtFinInvestigacion"
-                                id="txtFinInvestigacion" value="{{ $fin_persigue[0]->descripcion }}" readonly>
+                                id="txtFinInvestigacion" value="@if ($fin_persigue->count() > 0) {{ $fin_persigue[0]->descripcion }} @endif" readonly>
                         </div>
                         <div class="item-card col-4">
                             <label for="cboDesignInvestigacion" class="form-label">De acuerdo al diseño de
                                 investigación</label>
                             <input class="form-control" type="text" name="txtDesignInvestigacion"
-                                id="txtDesignInvestigacion" value="{{ $diseno_investigacion[0]->descripcion }}" readonly>
+                                id="txtDesignInvestigacion" value="@if ($diseno_investigacion->count() > 0) {{ $diseno_investigacion->descripcion }} @endif" readonly>
                         </div>
                         <div class="col-12">
                             <textarea class="form-control" name="tachkCorregir23" id="tachkCorregir23" cols="30" rows="4" hidden

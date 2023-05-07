@@ -804,12 +804,17 @@ class CursoTesisController extends Controller
             $fin_persigue = Fin_Persigue::find($tesis[0]->ti_finpersigue);
             if($fin_persigue!=null){
                 $ti_finpersigue =$fin_persigue->descripcion;
+            }else{
+                $ti_finpersigue="";
             }
 
             $diseno_investigacion = Diseno_Investigacion::find($tesis[0]->ti_disinvestigacion);
             if($diseno_investigacion!=null){
                 $ti_disinvestigacion =$diseno_investigacion->descripcion;
+            }else{
+                $ti_disinvestigacion="";
             }
+
 
             //Desarrollo del proyecto
             $localidad = $tesis[0]->localidad;
@@ -1414,6 +1419,7 @@ class CursoTesisController extends Controller
             if (is_numeric($buscarAlumno)) {
 
                 $estudiantes = DB::table('estudiante_ct2022')->select('estudiante_ct2022.*')->where('estudiante_ct2022.cod_matricula','like','%'.$buscarAlumno.'%')->paginate($this::PAGINATION2);
+
             } else {
                 $estudiantes = DB::table('estudiante_ct2022')->select('estudiante_ct2022.*')->where('estudiante_ct2022.apellidos','like','%'.$buscarAlumno.'%')->paginate($this::PAGINATION2);
             }
@@ -1596,6 +1602,7 @@ class CursoTesisController extends Controller
         $recursos = recursos::where('cod_proyectotesis','=',$cursoTesis[0]->cod_proyectotesis)->get();
         $tipoinvestigacion = TipoInvestigacion::where('cod_tinvestigacion','=',$cursoTesis[0]->cod_tinvestigacion)->get();
         $fin_persigue = Fin_Persigue::where('cod_fin_persigue','=',$cursoTesis[0]->ti_finpersigue)->get();
+        // dd($fin_persigue);
         $diseno_investigacion = Diseno_Investigacion::where('cod_diseno_investigacion','=',$cursoTesis[0]->ti_disinvestigacion)->get();
         $presupuesto = Presupuesto_Proyecto::join('presupuesto','presupuesto.cod_presupuesto','=','presupuesto_proyecto.cod_presupuesto')
         ->select('presupuesto_proyecto.*','presupuesto.codeUniversal','presupuesto.denominacion')
